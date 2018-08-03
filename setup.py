@@ -4,7 +4,7 @@ setup(
     name='coroutines',
     version='0.1.0',
     packages=[ 'coroutines'],
-    url='',
+    url='https://github.com/emteeoh/coroutines',
     license='LGPL',
     author='Richard Betel',
     author_email='emteeoh@gmail.com',

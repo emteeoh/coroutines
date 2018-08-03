@@ -2,14 +2,14 @@ from .decorator import coroutine
 
 
 @coroutine
-def printcoroutine():
+def trivialConsumer():
     while True:
         s=yield
         print(s)
 
 
 @coroutine
-def writer(fname,mode='w'):
+def fileConsumer(fname, mode='w'):
     with open(fname,mode) as f:
             while True:
                 s=yield

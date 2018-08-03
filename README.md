@@ -28,4 +28,3 @@ def mycoroutine():
  - matchre will match a regular expression against its incoming stream. Matches can be sent to one consumer and/or no-match
  can be sent to another
 
- 

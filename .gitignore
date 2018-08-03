@@ -1,3 +1,4 @@
 dist
 coroutines.egg-info
 venv
+.idea

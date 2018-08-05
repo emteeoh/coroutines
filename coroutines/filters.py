@@ -1,5 +1,6 @@
 from .decorator import coroutine
 import re
+from collections import deque
 
 @coroutine
 def split(ncr1,ncr2):

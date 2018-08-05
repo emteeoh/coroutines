@@ -3,14 +3,19 @@ from .decorator import coroutine
 
 @coroutine
 def trivialConsumer():
-    while True:
-        s=yield
-        print(s)
-
+    try:
+        while True:
+            s = yield
+            print(s)
+    except StopIteration:
+        pass
 
 @coroutine
 def fileConsumer(fname, mode='w'):
-    with open(fname,mode) as f:
+    try:
+        with open(fname, mode) as f:
             while True:
-                s=yield
+                s = yield
                 f.write(s)
+    except StopIteration:
+        pass

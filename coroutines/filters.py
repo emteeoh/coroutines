@@ -3,10 +3,13 @@ import re
 
 @coroutine
 def split(ncr1,ncr2):
-    while True:
-        s = yield
-        ncr1.send(s)
-        ncr2.send(s)
+    try:
+        while True:
+            s = yield
+            ncr1.send(s)
+            ncr2.send(s)
+    except StopIteration:
+        pass
 
 
 class combine():
@@ -19,24 +22,29 @@ class combine():
     @coroutine
     def receiver(self,n):
         assert n < self.n
-        while True:
-            s=(yield)
-            self.q[n].append(s)
+        try:
             while True:
-                if self.q[self.x]:
-                    self.ncr.send(self.q[self.x].popleft())
-                    self.x = (self.x + 1) % self.n
-                else:
-                    break
+                s = (yield)
+                self.q[n].append(s)
+                while True:
+                    if self.q[self.x]:
+                        self.ncr.send(self.q[self.x].popleft())
+                        self.x = (self.x + 1) % self.n
+                    else:
+                        break
+        except StopIteration:
+            pass
 
 @coroutine
 def matchre(regex,ncrmatch,ncrnomatch):
     m=re.compile(regex)
-    while True:
-        s=yield
-        res=m.match(s)
-        if res and ncrmatch:
-            ncrmatch.send(s)
-        if not res and ncrnomatch:
-            ncrnomatch.send(s)
-
+    try:
+        while True:
+            s = yield
+            res = m.match(s)
+            if res and ncrmatch:
+                ncrmatch.send(s)
+            if not res and ncrnomatch:
+                ncrnomatch.send(s)
+    except StopIteration:
+        pass

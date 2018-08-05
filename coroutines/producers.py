@@ -2,19 +2,31 @@
 
 
 def trivialProducer(s,ncr):
-    while True:
-        ncr.send(s)
+    try:
+        while True:
+            ncr.send(s)
+    except StopIteration:
+        pass
 
 def cycleProducer(s,ncr):
-    while True:
-        for e in s:
-            ncr.send(e)
+    try:
+        while True:
+            for e in s:
+                ncr.send(e)
+    except StopIteration:
+        pass
 
 def fileproducer(fname,ncr):
-    with open(fname) as f:
-        for line in f:
-            ncr.send(line)
+    try:
+        with open(fname) as f:
+            for line in f:
+                ncr.send(line)
+    except StopIteration:
+        pass
 
 def finiteProducer(n,ncr):
-    for i in range(n):
-        ncr.send(i)
+    try:
+        for i in range(n):
+            ncr.send(i)
+    except StopIteration:
+        pass

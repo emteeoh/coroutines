@@ -1,16 +1,16 @@
-#Coroutines
+# Coroutines
 A set of generic coroutines for doing things with pipelines.
 
-##decorator:
+## Decorator
 Instead of having to remember to "prime the pump" after creating a co-routine, just decorate it!
 
-'python
+```python
 @coroutine
 def mycoroutine():
     while True:
         s=yield
         do_stuff(s)
-'
+```
 
 ## Producers
  - trivialProducer will send the same thing, forever!

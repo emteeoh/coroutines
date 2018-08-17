@@ -16,3 +16,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown"
 )
+
+'''
+run python setup.py sdist upload to send this module to pypi. Don't forget to update version first!
+'''
